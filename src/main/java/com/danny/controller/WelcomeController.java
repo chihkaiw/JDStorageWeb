@@ -1,7 +1,6 @@
 package com.danny.controller;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,11 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.danny.core.Const.Const;
@@ -26,7 +25,7 @@ import com.danny.service.CompanyInformationServiceImpl;
 import com.danny.service.InventoryService;
 
 
-@RestController
+@Controller
 @RequestMapping("/DannyStorageWebGAE")
 @EnableAutoConfiguration
 public class WelcomeController {
@@ -40,13 +39,14 @@ public class WelcomeController {
 
 
   @RequestMapping("/")
-  public String index(Map<String, Object> model) {
+  public String index(Model model) {
 
     LOGGER.debug("index() is executed!");
 
-    model.put("title", inventoryService.getTitle(""));
-    model.put("msg", inventoryService.getDesc());
-    model.put(Const.JSP_RETURN_FORM_COMPANY_LIST, companyInformationServiceImpl.getCompanyList());
+    model.addAttribute("title", inventoryService.getTitle(""));
+    model.addAttribute("msg", inventoryService.getDesc());
+    model.addAttribute(Const.JSP_RETURN_FORM_COMPANY_LIST,
+        companyInformationServiceImpl.getCompanyList());
 
     return "search";
   }
