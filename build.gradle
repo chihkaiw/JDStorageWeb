@@ -13,10 +13,10 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
-apply plugin: 'war'
+//apply plugin: 'war'
 
 jar {
-	baseName = 'demo'
+	baseName = 'app'
 	version = '0.0.1-SNAPSHOT'
 }
 sourceCompatibility = 1.8
@@ -30,9 +30,7 @@ repositories {
 dependencies {
   	compile('org.springframework.boot:spring-boot-starter')
     // tag::jetty[]
-    compile("org.springframework.boot:spring-boot-starter-web") {
-        exclude module: "spring-boot-starter-tomcat"
-    }
+    compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-tomcat")
     // end::jetty[]
     // tag::actuator[]
@@ -46,6 +44,9 @@ dependencies {
 	compile("jstl:jstl:1.2")
 	compile("org.apache.tomcat.embed:tomcat-embed-jasper:8.5.4")
     // end::actuator[]
+    
+    //providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
