@@ -10,11 +10,12 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+import com.danny.abolish.CompanyListEntity;
+import com.danny.abolish.ProductListEntity;
 import com.danny.core.Const.Const;
 import com.danny.core.Repository.DropboxDao;
-import com.danny.core.entity.CompanyListEntity;
 import com.danny.core.entity.ProductDetailEntity;
-import com.danny.core.entity.ProductListEntity;
+
 
 @Configuration
 @Component

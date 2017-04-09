@@ -7,13 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class Const {
 
-  public static final String DROP_BOX_APP_KEY = "ii56aps25g5a981";
-
-  public static final String DROP_BOX_APP_SECRET = "ia9remlo3f5eu34";
-
-  public static final String DROP_BOX_APP_AUTH_ACCESS_TOKEN =
-      "MJdiWstHrCAAAAAAAAAABtoLY6aG5tKkCFMTT41aZ64ryk570bJZHlp_Ee9rIRCa";
-
   public static final String STRING_SLASH = "/";
 
   public static final String STRING_COMA = ":";

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.danny.core.Const.Const;
 import com.danny.core.Const.ErrorMessage;
 import com.danny.core.entity.ProductDetailEntity;
-import com.danny.core.entity.ProductListEntity;
 import com.danny.service.CompanyInformationServiceImpl;
 import com.danny.service.InventoryService;
 
@@ -31,12 +31,12 @@ import com.danny.service.InventoryService;
 public class WelcomeController {
 
   private final Logger LOGGER = LoggerFactory.getLogger(WelcomeController.class);
+
   @Autowired
   private InventoryService inventoryService;
 
   @Autowired
   private CompanyInformationServiceImpl companyInformationServiceImpl;
-
 
   @RequestMapping("/")
   public String index(Model model) {
@@ -45,8 +45,7 @@ public class WelcomeController {
 
     model.addAttribute("title", inventoryService.getTitle(""));
     model.addAttribute("msg", inventoryService.getDesc());
-    model.addAttribute(Const.JSP_RETURN_FORM_COMPANY_LIST,
-        companyInformationServiceImpl.getCompanyList());
+    model.addAttribute(Const.JSP_RETURN_FORM_COMPANY_LIST, inventoryService.getCompanyList());
 
     return "search";
   }
@@ -77,36 +76,23 @@ public class WelcomeController {
 
       HttpSession httpSession = request.getSession();
 
-      /*
-       * if (commonFunction.checkSession(uiModel, httpSession)) { LOGGER.debug(
-       * "UT_searchProductListAction_001 user's information not exist"); return
-       * "youngAdminTool/complete"; }
-       */
-
       // Check Company Name
       String searchCompany = request.getParameter(Const.GET_PARAMETER_SEARCH_COMPANY_NAME);
       LOGGER.debug("UT_searchProductListAction_002 company name");
-      if (null == searchCompany || searchCompany.isEmpty()) {
+      if (StringUtils.isEmpty(searchCompany)) {
         LOGGER.debug("UT_searchProductListAction_003 company name error");
-
         uiModel.addAttribute(Const.ERROR_MESSAGE, ErrorMessage.Error_01);
         return "search";
       }
 
       // Get ProductList By Company Name
       LOGGER.debug("UT_searchProductListAction_004 search " + searchCompany);
-      ArrayList<ProductListEntity> productListEntityList =
-          companyInformationServiceImpl.getProductListByCompanyName(searchCompany);
-      LOGGER.debug("UT_searchAction_005 searchAction end and productListEntityList size is "
-          + productListEntityList.size());
-      if (productListEntityList.size() > 0) {
-        // if productListEntityList > 0, return those value
-        uiModel.addAttribute(Const.JSP_RETURN_FORM_COMPANY_LIST,
-            companyInformationServiceImpl.getCompanyList());
-        uiModel.addAttribute(Const.JSP_RETURN_FORM_PRODUCT_LIST_BY_COMPANY, productListEntityList);
-        uiModel.addAttribute(Const.JSP_RETURN_NAME_COMPANY_NAME, searchCompany);
 
-      }
+      uiModel.addAttribute(Const.JSP_RETURN_FORM_COMPANY_LIST, inventoryService.getCompanyList());
+      uiModel.addAttribute(Const.JSP_RETURN_FORM_PRODUCT_LIST_BY_COMPANY,
+          inventoryService.getProductListByCompanyName(searchCompany));
+      uiModel.addAttribute(Const.JSP_RETURN_NAME_COMPANY_NAME, searchCompany);
+
       return "search";
 
     } catch (Exception e) {

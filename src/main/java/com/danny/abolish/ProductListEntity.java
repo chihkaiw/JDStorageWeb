@@ -1,4 +1,4 @@
-package com.danny.core.entity;
+package com.danny.abolish;
 
 public class ProductListEntity {
 

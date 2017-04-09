@@ -9,11 +9,9 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.danny.core.Const.Const;
 import com.dropbox.core.DbxAccountInfo;
 import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxEntry;
@@ -21,11 +19,11 @@ import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.DbxWriteMode;
 
-@Configuration
 @Component
-@EnableAutoConfiguration
 public class DropboxDao {
 
+  @Value("${dropbox.appAuthAccessToken}")
+  private String appAuthAccessToken;
 
   DbxClient dbxClient;
 
@@ -47,9 +45,9 @@ public class DropboxDao {
      * Locale.getDefault().toString());
      */
 
-    String authAccessToken = Const.DROP_BOX_APP_AUTH_ACCESS_TOKEN;
-    dbxClient = new DbxClient(dbxRequestConfig, authAccessToken);
-    // System.out.println("Dropbox Account Name: " + dbxClient.getAccountInfo().displayName);
+    dbxClient = new DbxClient(dbxRequestConfig, appAuthAccessToken);
+    System.out.println(
+        "Dropbox Account Name: " + appAuthAccessToken + dbxClient.getAccountInfo().displayName);
 
     return dbxClient;
   }

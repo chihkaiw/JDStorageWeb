@@ -72,7 +72,7 @@
               <tbody>
                 <tr th:each="obj,iterationStatus : ${companyList}">
                   <!--  <td th:text="${status }"></td>-->
-                  <td style="width: 20%"><div th:text="${obj.ID}"></div></td>
+                  <td style="width: 20%"><div th:text="${obj.companyID}"></div></td>
                   <td style="width: 40%"><div
                       th:text="${obj.companyName}"></div></td>
                   <td style="width: 37%"><a
@@ -89,7 +89,7 @@
               <tbody>
                 <tr th:each="obj,iterationStatus : ${companyList}">
                   <!--  <td th:text="${status }"></td>-->
-                  <td style="width: 20%"><div th:text="${obj.ID}"></div></td>
+                  <td style="width: 20%"><div th:text="${obj.companyID}"></div></td>
                   <td style="width: 40%"><div
                       th:text="${obj.companyName}"></div></td>
                   <td style="width: 40%"><a
@@ -123,7 +123,7 @@
               <th class="tdclass" style="width: 20%;">
                 <div style="float: left;">&#x7522;&#x54C1;&#x540D;&#x7A31;</div>
               </th>
-              <th class="tdclass" style="width: 10%;">
+              <!--  <th class="tdclass" style="width: 10%;">
                 <div style="float: left;">&#x9644;&#x8A3B;</div>
               </th>
               <th class="tdclass" style="width: 20%;">
@@ -131,7 +131,7 @@
               </th>
               <th class="tdclass" style="width: 10%;">
                 <div style="float: left;">&#x5BA2;&#x6236;&#x7DE8;&#x865F;</div>
-              </th>
+              </th>-->
               <th class="tdclass" style="width: 10%;">
                 <div style="float: left;">&#x5EAB;&#x5B58;&#x6578;&#x91CF;</div>
               </th>
@@ -150,15 +150,16 @@
                 <tr th:each="obj,iterationStatus : ${productListByCompany}">
                   <!--  <td th:text="${status }"></td>-->
                   <td style="width: 10%"><div th:text="${iterationStatus.count}"></div></td>
-                  <td style="width: 20%"><div th:text="${obj.ID}"></div></td>
+                  <td style="width: 20%"><div th:text="${obj.productID}"></div></td>
                   <td style="width: 20%"><a
-                    th:href="@{/DannyStorageWebGAE/searchProductDetail(searchCompanyName=${companyName},searchProductName=${obj.name})}" th:text="${obj.name}"></a></td>
-                  <td style="width: 10%"><div th:text="${obj.note}"></div></td>
+                    th:href="@{/DannyStorageWebGAE/searchProductDetail(searchCompanyName=${companyName},searchProductName=${obj.productName})}" th:text="${obj.productName}"></a></td>
+                  <!--<td style="width: 10%"><div th:text="${obj.note}"></div></td>
                   <td style="width: 20%"><div
                       th:text="${obj.location}"></div></td>
                   <td style="width: 10%"><div
                       th:text="${obj.belingcompanyID}"></div></td>
-                  <td style="width: 9%"></td>
+                  <td style="width: 9%"></td>-->
+                  <td style="width: 20%"><div th:text="${obj.howmany}"></div></td>
                 </tr>
               </tbody>
             </table>
@@ -175,15 +176,16 @@
                  <tr th:each="obj,iterationStatus : ${productListByCompany}">
                   <!--  <td th:text="${status }"></td>-->
                   <td style="width: 10%"><div th:text="${iterationStatus.count}"></div></td>
-                  <td style="width: 20%"><div th:text="${obj.ID}"></div></td>
+                  <td style="width: 20%"><div th:text="${obj.productID}"></div></td>
                   <td style="width: 20%"><a
-                    th:href="@{/DannyStorageWebGAE/searchProductDetail(searchCompanyName=${companyName},searchProductName=${obj.name})}" th:text="${obj.name}"></a></td>
-                  <td style="width: 10%"><div th:text="${obj.note}"></div></td>
+                    th:href="@{/DannyStorageWebGAE/searchProductDetail(searchCompanyName=${companyName},searchProductName=${obj.productName})}" th:text="${obj.productName}"></a></td>
+                  <!--  <td style="width: 10%"><div th:text="${obj.note}"></div></td>
                   <td style="width: 20%"><div
                       th:text="${obj.location}"></div></td>
                   <td style="width: 10%"><div
                       th:text="${obj.belingcompanyID}"></div></td>
-                  <td style="width: 10%"></td>
+                  <td style="width: 10%"></td>-->
+                  <td style="width: 20%"><div th:text="${obj.howmany}"></div></td>
                 </tr>
               </tbody>
             </table>

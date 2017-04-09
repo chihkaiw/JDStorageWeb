@@ -29,13 +29,11 @@ repositories {
 
 dependencies {
   	compile('org.springframework.boot:spring-boot-starter')
-    // tag::jetty[]
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-    //compile("org.springframework.boot:spring-boot-starter-tomcat")
-    // end::jetty[]
-    // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    
 	compile("com.dropbox.core:dropbox-core-sdk:1.8.2")
 	compile("log4j:log4j:1.2.17")
 	compile("org.json:json:20160212")
@@ -44,7 +42,6 @@ dependencies {
 	compile("com.fasterxml.jackson.core:jackson-core:2.7.3")
 	compile("jstl:jstl:1.2")
 	compile("org.apache.tomcat.embed:tomcat-embed-jasper:8.5.4")
-    // end::actuator[]
     
     //providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     
